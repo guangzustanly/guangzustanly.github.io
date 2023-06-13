@@ -1,1 +1,2 @@
-# guangzustanly.github.io
+# 扫雷游戏
+这是一个扫雷游戏！
