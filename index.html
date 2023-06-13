@@ -77,18 +77,12 @@
           }
      </style>
      <base target=_top>
-
 </head>
-
 <body bgcolor="#f7f7f0" style="margin:0;" onload="ifnight();start();">
-
      <center>
-
           <div style="margin-top:0.8rem;">
                <b>扫雷游戏</b>
           </div>
-
-
           <div style="margin-top:0.8rem;">
                <a href="javascript:_123(1)">基础</a>
                &nbsp;
@@ -109,65 +103,44 @@
           <table style="margin-top:0.8rem;border-radius:6px;background:#cccccc">
                <tr>
                     <td style="padding:9px;">
-
                          <table id=p42 class=pad style="height:34px">
                               <tr>
                                    <td width=50%><canvas id="rm" height=23 width=39></canvas></td>
                                    <td align=center onmouseup="_45()" style="padding:0 8 0 8"><img id="face">
                                    <td width=50% align=right><canvas id="es" height=23 width=39></canvas></td>
                          </table>
-
-
                          <canvas id="paf" class="pad" style="margin-top:6px;" width=0 height=0></canvas>
-
-
                <tr>
                     <td align=right>
           </table>
-
           <div style="width:90%;text-align:left;margin-top:3rem;">
                <span style="vertical-align:middle">自动标雷</span><input type=checkbox checked id=af onclick="saf()">
                <span style="float:right">
                     夜间<input type="checkbox" id="bcolor" onclick="bcolor()"></span>
                <br><br>
-
                第一次点击不会是雷。格子里的数字表示它周围有几个雷。游戏目标是找出所有雷。“触雷”则输。点击表情重新开始。
-
                <b>二选一留到最后，可任选</b>，需先清完其他方块。
-
                <br><br>
                <b>电脑：</b>鼠标右键点击原始方块，以小旗标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字（左右键均可）翻开周围的安全区域。鼠标左键点击无标记方块则直接打开。
-
-
                <a id=setm href="javascript:mouse2()">设置</a>
-
                <div id="_mouse" style="border:solid 1px;display:none;background-color:silver;padding:0.5rem;">
 
                     鼠标起效时间点
-
-
                     <br>
                     <br>
-
                     <i>左键</i>
                     <br>
                     <br>
-
-
                     <input type=radio name="mp1" value="0" onclick="ssave('mp1',0);">按下时
                     <input type=radio name="mp1" value="1" onclick="ssave('mp1',1);">弹起时
                     <!--input type=radio name="mp1" value="2" onclick="ssave('mp1',2);">两次
 <br-->
                     <br>
-
                     <br>
                     <br>
-
                     <i>右键</i>
                     <br>
                     <br>
-
-
                     <input type=radio name="mp2" value="0" onclick="ssave('mp2',0);">按下时
                     <input type=radio name="mp2" value="1" onclick="ssave('mp2',1);">弹起时
                     <!--input type=radio name="mp2" value="2" onclick="ssave('mp2',2);">两次
@@ -180,8 +153,6 @@
                     <br>
                     <br>
                </div>
-
-
                <br><br>
                <b>手机或平板：</b>在触屏上点击方块即标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字翻开周围的安全区域。长按方块直接打开。（可设置为点击直接打开；或点击三次打开）
                <a id=sett href="javascript:touch2()">设置</a>
@@ -221,37 +192,16 @@
                <script>
                          (adsbygoogle = window.adsbygoogle || []).push({});
                </script>
-
-
           </div>
-
-
           <script>
                function ad() {
 
                     $("gg").src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2872916894005511";
-
                }
           </script>
-
-          <div style="margin-top:5rem;">
-               ID: <span id=uid></span>
-               <!--a href=setting.htm>改名</a-->
-          </div>
-
-
-
           <div style="margin-top:2rem;">
-
-
-
-
                <br><br>
-
                <br><br><br><br><br>
      </center>
-
-
 </body>
-
 </html>
