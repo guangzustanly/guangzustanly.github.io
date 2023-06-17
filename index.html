@@ -6,7 +6,7 @@ charset=utf-8">
      <meta name="viewport" content="initial-scale=1">
      <meta name="keywords" content="扫雷, saolei">
      <meta name="description" content="经典扫雷游戏，并略作改进。增加了满屏级别，自适应屏幕大小">
-     <title>扫雷游戏 - Minesweeper</title>
+     <title>扫雷游戏*^▽^*</title>
      <script>
           var gif = [];
           gif[0] = "data:img/gif;base64, R0lGODlhFQAVAJEAAAAAAP//AL29vQAAACH5BAAHAP8ALAAAAAAVABUAAAJAlI+py50AoUMwWCsduBy33XXAAoaiUlZY+nBq8MKUSY9HSbtzft4X/vu1MCLhcBXRoXgyBlD5AWYmgsiUis0yCgA7";
@@ -69,7 +69,7 @@ charset=utf-8">
                     for (var i = 0;
                          i < xa.length;
                          i++) {
-                         xa[i].style.color = 'silver';
+                         xa[i].style.color = '#fdefef';
 
                     }
                }
@@ -803,33 +803,6 @@ charset=utf-8">
           }()
      </script>
      <style>
-          input {
-               height: 1.5rem;
-
-               width: 3.8rem;
-
-          }
-
-          #face {
-               border: 2px solid #808080;
-
-               border-left-color: #fff;
-
-               border-top-color: #fff;
-
-
-          }
-
-          #face:active {
-               border: 2px solid #808080;
-
-               border-bottom: 1px solid #808080;
-
-               border-right: 1px solid #808080;
-
-
-          }
-
           table {
                border-collapse: collapse;
 
@@ -844,20 +817,18 @@ charset=utf-8">
 
           }
 
-          input[type=checkbox] {
-               vertical-align: middle;
 
-               height: 1.19rem;
 
-               width: 1.5rem;
-
+          a {
+               color: #3e5a73;
+               text-decoration: none;
           }
      </style>
      <base target=_top>
 </head>
 
-<body bgcolor="#f7f7f0" style="margin:0;" onload="ifnight();start();">
-     <center>
+<body style="margin:0;background-color: #fdefef;" onload="ifnight();start();">
+     <div style="text-align: center;margin: 0 auto;">
           <div style="margin-top:0.8rem;">
                <b>扫雷游戏</b>
           </div>
@@ -882,19 +853,20 @@ charset=utf-8">
                雷<input id=mm type=number value=199>
                <input type=button onclick="udf()" value="确定">
           </div>
-          <table style="margin-top:0.8rem;border-radius:6px;background:#cccccc">
+          <table style="margin-top:0.8rem;border-radius:6px;background:#cccccc;text-align: center;margin: 0 auto;">
                <tr>
-                    <td style="padding:9px;
-">
+                    <td style="padding:9px;">
                          <table id=p42 class=pad style="height:34px">
                               <tr>
                                    <td width=50%><canvas id="rm" height=23 width=39></canvas></td>
-                                   <td align=center onmouseup="_45()" style="padding:0 8 0 8"><img id="face">
-                                   <td width=50% align=right><canvas id="es" height=23 width=39></canvas></td>
+                                   <td onmouseup="_45()" style="padding:0 8 0 8;text-align: center;"><img id="face">
+                                   <td width=50% style="text-align: center;"><canvas id="es" height=23
+                                             width=39></canvas>
+                                   </td>
                          </table>
                          <canvas id="paf" class="pad" style="margin-top:6px;" width=0 height=0></canvas>
                <tr>
-                    <td align=right>
+                    <td style="text-align: center;">
           </table>
           <div style="width:90%;text-align:left;margin-top:3rem;">
                <span style="vertical-align:middle">自动标雷</span><input type=checkbox checked id=af onclick="saf()">
@@ -906,7 +878,8 @@ charset=utf-8">
                <br><br>
                <b>电脑：</b>鼠标右键点击原始方块，以小旗标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字（左右键均可）翻开周围的安全区域。鼠标左键点击无标记方块则直接打开。
                <a id=setm href="javascript:mouse2()">设置</a>
-               <div id="_mouse" style="border:solid 1px;display:none;background-color:silver;padding:0.5rem;">
+               <div id="_mouse"
+                    style="border:solid 1px;display:none;background-color: #265d90;padding:0.5rem;color: silver;">
                     鼠标起效时间点
                     <br>
                     <br>
@@ -915,8 +888,7 @@ charset=utf-8">
                     <br>
                     <input type=radio name="mp1" value="0" onclick="ssave('mp1',0);">按下时
                     <input type=radio name="mp1" value="1" onclick="ssave('mp1',1);">弹起时
-                    <!--input type=radio name="mp1" value="2" onclick="ssave('mp1',2);">两次
-<br-->
+                    <!--input type=radio name="mp1" value="2" onclick="ssave('mp1',2);">两次<br-->
                     <br>
                     <br>
                     <br>
@@ -926,19 +898,20 @@ charset=utf-8">
                     <input type=radio name="mp2" value="0" onclick="ssave('mp2',0);">按下时
                     <input type=radio name="mp2" value="1" onclick="ssave('mp2',1);">弹起时
                     <!--input type=radio name="mp2" value="2" onclick="ssave('mp2',2);">两次
-<br>
-<br>
-<br>
-<br>
-<br>
-<small>“两次”：点下和松开在不同的格子上。</small-->
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <small>“两次”：点下和松开在不同的格子上。</small-->
                     <br>
                     <br>
                </div>
                <br><br>
                <b>手机或平板：</b>在触屏上点击方块即标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字翻开周围的安全区域。长按方块直接打开。（可设置为点击直接打开；或点击三次打开）
                <a id=sett href="javascript:touch2()">设置</a>
-               <div id="_touch" style="border:solid 1px;display:none;background-color:silver;padding:0.5rem;">
+               <div id="_touch"
+                    style="border:solid 1px;display:none;background-color:#265d90;padding:0.5rem;color: silver;">
                     <i>触击效果</i>
                     <br>
                     <br>
@@ -962,11 +935,12 @@ charset=utf-8">
                     <br>
                     <br>
                </div>
-               <br><br>
-               <div style="margin-top:2rem;">
-               <br>休闲益智小游戏——zgshuo制作
+               <div style="text-align: center;">
+                    <br><br>
+                    <b>休闲益智小游戏——zgshuo制作</b>
+               </div>
           </div>
-     </center>
+     </div>
 </body>
 
 </html>
