@@ -1,4 +1,6 @@
-# 扫雷游戏
+# 学科知识大比拼
+中文(zn_ch)
+对你的初中知识来一次比赛吧！
 
-这是一个扫雷游戏！
-下一步想做无猜扫雷算法
+English(en_us):
+Let's compete with your knowledge in your junior high!
