@@ -61,9 +61,9 @@
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/WebGl.loader.js";
       var config = {
-        dataUrl: buildUrl + "/WebGl.data",
-        frameworkUrl: buildUrl + "/WebGl.framework.js",
-        codeUrl: buildUrl + "/WebGl.wasm",
+        dataUrl: buildUrl + "/WebGl.data.unityweb",
+        frameworkUrl: buildUrl + "/WebGl.framework.js.unityweb",
+        codeUrl: buildUrl + "/WebGl.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "StanlyCompany",
         productName: "JuniorHigh",
@@ -100,7 +100,7 @@
         canvas.style.height = "540px";
       }
 
-      canvas.style.background = "url('" + buildUrl + "/WebGl.jpg') center / cover";
+      canvas.style.background = "url('" + buildUrl + "/WebGl.jpg.unityweb') center / cover";
       loadingBar.style.display = "block";
 
       var script = document.createElement("script");
