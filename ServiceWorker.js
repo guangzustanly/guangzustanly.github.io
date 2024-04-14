@@ -1,9 +1,9 @@
 const cacheName = "StanlyCompany-JuniorHigh-3.3.3";
 const contentToCache = [
     "Build/WebGl.loader.js",
-    "Build/WebGl.framework.js.gz",
-    "Build/WebGl.data.gz",
-    "Build/WebGl.wasm.gz",
+    "Build/WebGl.framework.js.unityweb",
+    "Build/WebGl.data.unityweb",
+    "Build/WebGl.wasm.unityweb",
     "TemplateData/style.css"
 
 ];
