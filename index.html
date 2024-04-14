@@ -1,131 +1,125 @@
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Tuanjie WebGL Player | JuniorHigh</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico">
+    <link rel="stylesheet" href="TemplateData/style.css">
+  </head>
+  <body>
+    <div id="tuanjie-container" class="tuanjie-desktop">
+      <canvas id="tuanjie-canvas" width=1280 height=720 tabindex="-1"></canvas>
+      <div id="tuanjie-loading-bar">
+        <div id="tuanjie-logo"></div>
+        <div id="tuanjie-progress-bar-empty">
+          <div id="tuanjie-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="tuanjie-warning"> </div>
+      <div id="tuanjie-footer">
+        <div id="tuanjie-webgl-logo"></div>
+        <div id="tuanjie-fullscreen-button"></div>
+        <div id="tuanjie-build-title">JuniorHigh</div>
+      </div>
+    </div>
+	
+	
+    <script>
 
-<head>
-     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-     <meta name="viewport" content="initial-scale=1">
-     <meta name="keywords" content="扫雷, saolei">
-     <meta name="description" content="经典扫雷游戏，并略作改进。增加了满屏级别，自适应屏幕大小">
-     <title>扫雷游戏*^▽^*</title>
-     <script src="script.js"></script>
-     <link rel="stylesheet" href="style.css">
-     <base target=_top>
-     <link rel="shortcut icon" href="img/ray.ico" />
-</head>
+      var container = document.querySelector("#tuanjie-container");
+      var canvas = document.querySelector("#tuanjie-canvas");
+      var loadingBar = document.querySelector("#tuanjie-loading-bar");
+      var progressBarFull = document.querySelector("#tuanjie-progress-bar-full");
+      var fullscreenButton = document.querySelector("#tuanjie-fullscreen-button");
+      var warningBanner = document.querySelector("#tuanjie-warning");
 
-<body style="margin:0;background-color: #fdefef;" onload="ifnight();start();">
-     <div style="text-align: center;margin: 0 auto;">
-          <div style="margin-top:0.8rem;">
-               <b>扫雷游戏</b>
-          </div>
-          <div style="margin-top:0.8rem;">
-               <a href="javascript:_123(1)">基础</a>
-               &nbsp;
+      // Shows a temporary message banner/ribbon for a few seconds, or
+      // a permanent error message on top of the canvas if type=='error'.
+      // If type=='warning', a yellow highlight color is used.
+      // Modify or remove this function to customize the visually presented
+      // way that non-critical warnings and error messages are presented to the
+      // user.
+      function unityShowBanner(msg, type) {
+        function updateBannerVisibility() {
+          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+        }
+        var div = document.createElement('div');
+        div.innerHTML = msg;
+        warningBanner.appendChild(div);
+        if (type == 'error') div.style = 'background: red; padding: 10px;';
+        else {
+          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+          setTimeout(function() {
+            warningBanner.removeChild(div);
+            updateBannerVisibility();
+          }, 5000);
+        }
+        updateBannerVisibility();
+      }
 
-               <a href="javascript:_123(2)">中级</a>
-               &nbsp;
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/WebGl.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/WebGl.data.unityweb",
+        frameworkUrl: buildUrl + "/WebGl.framework.js.unityweb",
+        codeUrl: buildUrl + "/WebGl.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "StanlyCompany",
+        productName: "JuniorHigh",
+        productVersion: "3.3.3",
+        showBanner: unityShowBanner,
+      };
 
-               <a href="javascript:_123(3)">专家</a>
-               &nbsp;
+      // By default Tuanjie keeps WebGL canvas render target size matched with
+      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+      // Set this to false if you want to decouple this synchronization from
+      // happening inside the engine, and you would instead like to size up
+      // the canvas DOM size and WebGL render target sizes yourself.
+      // config.matchWebGLToCanvasSize = false;
 
-               <a href="javascript:_123(4)">满屏</a>
-               &nbsp;
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        // Mobile device style: fill the whole browser client area with the game canvas:
 
-               <a href="javascript:_123(5)">自定义</a>
-          </div>
-          <div id=custom style="display:none;margin-top:5">
-               横<input id=hm type=number value=40>
-               竖<input id=vm type=number value=24>
-               雷<input id=mm type=number value=199>
-               <input type=button onclick="udf()" value="确定">
-          </div>
-          <table style="margin-top:0.8rem;border-radius:6px;background:#cccccc;text-align: center;margin: 0 auto;">
-               <tr>
-                    <td style="padding:9px;">
-                         <table id=p42 class=pad style="height:34px">
-                              <tr>
-                                   <td width=50%><canvas id="rm" height=23 width=39></canvas></td>
-                                   <td onmouseup="_45()" style="padding:0 8 0 8;text-align: center;"><img id="face">
-                                   <td width=50% style="text-align: center;"><canvas id="es" height=23
-                                             width=39></canvas>
-                                   </td>
-                         </table>
-                         <canvas id="paf" class="pad" style="margin-top:6px;" width=0 height=0></canvas>
-               <tr>
-                    <td style="text-align: center;">
-          </table>
-          <div style="width:90%;text-align:left;margin-top:3rem;">
-               <span style="vertical-align:middle">自动标雷</span><input type=checkbox checked id=af onclick="saf()">
-               <span style="float:right">
-                    夜间<input type="checkbox" id="bcolor" onclick="bcolor()"></span>
-               <br><br>
-               第一次点击不会是雷。格子里的数字表示它周围有几个雷。游戏目标是找出所有雷。“触雷”则输。点击表情重新开始。
-               <b>二选一留到最后，可任选</b>，需先清完其他方块。
-               <br><br>
-               <b>电脑：</b>鼠标右键点击原始方块，以小旗标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字（左右键均可）翻开周围的安全区域。鼠标左键点击无标记方块则直接打开。
-               <a id=setm href="javascript:mouse2()">设置</a>
-               <div id="_mouse"
-                    style="border:solid 1px;display:none;background-color: #265d90;padding:0.5rem;color: silver;">
-                    鼠标起效时间点
-                    <br>
-                    <br>
-                    <i>左键</i>
-                    <br>
-                    <br>
-                    <input type=radio name="mp1" value="0" onclick="ssave('mp1',0);">按下时
-                    <input type=radio name="mp1" value="1" onclick="ssave('mp1',1);">弹起时
-                    <!--input type=radio name="mp1" value="2" onclick="ssave('mp1',2);">两次<br-->
-                    <br>
-                    <br>
-                    <br>
-                    <i>右键</i>
-                    <br>
-                    <br>
-                    <input type=radio name="mp2" value="0" onclick="ssave('mp2',0);">按下时
-                    <input type=radio name="mp2" value="1" onclick="ssave('mp2',1);">弹起时
-                    <!--input type=radio name="mp2" value="2" onclick="ssave('mp2',2);">两次
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <small>“两次”：点下和松开在不同的格子上。</small-->
-                    <br>
-                    <br>
-               </div>
-               <br><br>
-               <b>手机或平板：</b>在触屏上点击方块即标记为雷，再点去除标记。标记的雷数和数字匹配时，点击数字翻开周围的安全区域。长按方块直接打开。（可设置为点击直接打开；或点击三次打开）
-               <a id=sett href="javascript:touch2()">设置</a>
-               <div id="_touch"
-                    style="border:solid 1px;display:none;background-color:#265d90;padding:0.5rem;color: silver;">
-                    <i>触击效果</i>
-                    <br>
-                    <br>
-                    <input type=radio name="tpn" value="0" checked onclick="ssave('tpn',0);smore(0);">标记
-                    <input type=radio name="tpn" value="1" onclick="ssave('tpn',1);smore(1);">直开
-                    <br><br>
-                    <br>
-                    <div id=thint style="display:none;">
-                         <i>直开模式下的标记方法</i>
-                         <br>
-                         <br>
-                         长按
-                    </div>
-                    <div id=topen style="display:none;">
-                         <i>标记模式下的打开方法</i>
-                         <br>
-                         <br>
-                         <input type=radio name="opn" value="0" checked onclick="ssave('opn',0)">长按
-                         <input type=radio name="opn" value="1" onclick="ssave('opn',1)">快点三次
-                    </div>
-                    <br>
-                    <br>
-               </div>
-               <div style="text-align: center;">
-                    <br><br>
-                    <b>休闲益智小游戏——zgshuo制作</b>
-               </div>
-          </div>
-     </div>
-</body>
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        container.className = "tuanjie-mobile";
+        canvas.className = "tuanjie-mobile";
 
+        // To lower canvas resolution on mobile devices to gain some
+        // performance, uncomment the following line:
+        // config.devicePixelRatio = 1;
+
+
+      } else {
+        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+
+        canvas.style.width = "1280px";
+        canvas.style.height = "720px";
+      }
+
+      canvas.style.background = "url('" + buildUrl + "/WebGl.jpg.unityweb') center / cover";
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createTuanjieInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+              }).then((tuanjieInstance) => {
+                loadingBar.style.display = "none";
+                fullscreenButton.onclick = () => {
+                  tuanjieInstance.SetFullscreen(1);
+                };
+              }).catch((message) => {
+                alert(message);
+              });
+            };
+
+      document.body.appendChild(script);
+
+    </script>
+  </body>
 </html>
